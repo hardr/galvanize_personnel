@@ -36,11 +36,12 @@ $('document').ready(function() {
       method: 'POST',
       data: userPOST,
       success: function(succ) {
-        $('#message > p').replaceWith('<p>' + succ.message + '</p>');
+        $('#message > p').replaceWith('<p class="save-status">' + succ.message + '</p>');
+        $('.save-status').fadeIn(500).delay(2000).fadeOut(500);
       },
       error: function(err) {
-        console.log(err);
-        $('#message> p').replaceWith('<p>' + err.responseJSON.message + '</p>')
+        $('#message > p').replaceWith('<p class="save-status">' + err.responseJSON.message + '</p>');
+        $('.save-status').fadeIn(500).delay(2000).fadeOut(500);
       }
     })
   })
