@@ -8,9 +8,9 @@ $('document').ready(function() {
   }).done(function(roleResponse) { //grab role values from API and assign to variables
     var roles = {};
 
-    for (var i =0; i < roleResponse.length; i++) {
+    for (var i = 0; i < roleResponse.length; i++) {
       roles[roleResponse[i].title] = roleResponse[i];
-      $('#roles').append( //DOM manipulation to add role options/value/class
+      $('#roles').append(//DOM manipulation to add role options/value/class
         '<option class="select-roles" value="' + roleResponse[i].title + '">' + roleResponse[i].title + '</option>'
       );
     }
@@ -18,8 +18,8 @@ $('document').ready(function() {
     $('#roles').change(function(e) { //manipulates DOM img based on user role selection
       e.preventDefault();
       var userRole = roles[$(this).val()].img;
-      $('#sprite').replaceWith('<img id="sprite" src="' + userRole +'">')
-    })
+      $('#sprite').replaceWith('<img id="sprite" src="' + userRole + '">');
+    });
   });
 
   $('form').on('submit', function(e) {
@@ -29,7 +29,7 @@ $('document').ready(function() {
       firstName: $('#first-name').val(),
       lastName: $('#last-name').val(),
       role: $('#roles').val()
-    }
+    };
 
     $.ajax({
       url: 'https://galvanize-student-apis.herokuapp.com/gpersonnel/users',
@@ -43,7 +43,7 @@ $('document').ready(function() {
         $('#message > p').replaceWith('<p class="save-status err">' + err.responseJSON.message + '</p>');
         $('.save-status').fadeIn(500).delay(2000).fadeOut(500);
       }
-    })
-  })
+    });
+  });
 
 });
